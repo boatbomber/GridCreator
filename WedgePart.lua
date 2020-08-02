@@ -5,14 +5,20 @@ function WedgeTri.new(PointA,PointB,PointC, x,z)
 	local Tri = {}
 	
 	local w1 = Instance.new("WedgePart")
-		w1.Anchored = true;
-		w1.TopSurface = Enum.SurfaceType.Smooth;
-		w1.BottomSurface = Enum.SurfaceType.Smooth;
+	w1.Anchored = true;
 	local w2 = Instance.new("WedgePart")
-		w2.Anchored = true;
-		w2.TopSurface = Enum.SurfaceType.Smooth;
-		w2.BottomSurface = Enum.SurfaceType.Smooth;		
+	w2.Anchored = true;	
 	
+	for i=0, 5, 1 do
+			local t1 = game.ReplicatedStorage.TerrainTexture:Clone()
+			local t2 = game.ReplicatedStorage.TerrainTexture:Clone()
+			t1.Face = i
+			t2.Face = i
+			t1.Color3 = w1.Color
+			t2.Color3 = w2.Color
+			t1.Parent = w1
+			t2.Parent = w2
+	end
 	function Tri.Update()
 		
 		local a,b,c = Vector3.new(PointA.X,PointA.Y,PointA.Z),Vector3.new(PointB.X,PointB.Y,PointB.Z),Vector3.new(PointC.X,PointC.Y,PointC.Z)		
@@ -51,10 +57,8 @@ function WedgeTri.new(PointA,PointB,PointC, x,z)
 			(PointA.Color.B+PointB.Color.B+PointC.Color.B)/3
 		)
 	end
-	
-	Tri.Update()
-	
-	w1.Parent = workspace.Terrain
+		Tri.Update()
+			w1.Parent = workspace.Terrain
 	w2.Parent = workspace.Terrain
 	
 	return Tri

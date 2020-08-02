@@ -1,4 +1,5 @@
 local ipairs = ipairs
+script.TerrainTexture.Parent = game.ReplicatedStorage
 
 local DrawTypes = {
 	
@@ -172,3 +173,4 @@ function GridCreator.new(Settings)
 end
 
 return GridCreator
+
